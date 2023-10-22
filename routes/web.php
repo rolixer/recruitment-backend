@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,9 @@ Route::view('manage', 'manage')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::get("/search", [BookController::class, 'getSearchView'])->name('search');
+
+Route::post('/search', [BookController::class, 'search']);
 
 require __DIR__ . '/auth.php';

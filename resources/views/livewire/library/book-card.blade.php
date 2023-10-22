@@ -41,6 +41,7 @@ new class extends Component {
         if ($this->book) {
             Book::find($this->book->id)->update($validated);
         } else {
+            $validated['created_at'] = now();
             Book::insert($validated);
             $this->dispatch('book-created');
         }
@@ -73,9 +74,12 @@ new class extends Component {
             id="copies_available" min=0 />
         <br>
         <x-primary-button class="mt-4"> Save </x-primary-button>
+        @if ($book)
         <x-secondary-button
             wire:click="delete({{$book->id}})"
         > Delete </x-secondary-button>
+
+        @endif
 
     </form>
 </div>
