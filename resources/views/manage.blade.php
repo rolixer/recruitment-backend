@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto p-6 lg:p-8">
         <div class="flex justify-center">
-            Library
+            Manage library
         </div>
-        <livewire:library.list/>
+        <livewire:library.editor/>
     </div>
 </x-app-layout>
