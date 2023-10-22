@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,9 @@ Route::view('profile', 'profile')
 Route::get("/search", [BookController::class, 'getSearchView'])->name('search');
 
 Route::post('/search', [BookController::class, 'search']);
+
+Route::get('/category', [CategoryController::class, 'getCategoriesView'])->name('categories');
+
+Route::post('/category', [CategoryController::class, 'getCategories']);
 
 require __DIR__ . '/auth.php';

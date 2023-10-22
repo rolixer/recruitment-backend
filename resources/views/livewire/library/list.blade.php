@@ -8,15 +8,22 @@ new class extends Component {
     use WithPagination;
 
     public $query = '';
-
+    public $category_id = 0;
 
     public function with()
     {
-        return [
-            'books' => Book::where('author', 'like', '%'.$this->query.'%')
-                            ->orWhere('title', 'like', '%'.$this->query.'%')
-                            ->paginate(10),
+        if ($this->category_id) {
+
+            return [
+                'books' => Book::where('category_id','=',$this->category_id)->paginate(10),
         ];
+        } else {
+            return [
+                'books' => Book::where('author', 'like', '%' . $this->query . '%')
+                    ->orWhere('title', 'like', '%' . $this->query . '%')
+                    ->paginate(10),
+            ];
+        }
     }
 }; ?>
 
@@ -34,7 +41,7 @@ new class extends Component {
                 <p>
                     {{ $book->description }}
                 </p>
-                <hr>
+                <hr>fwef
                 <span>
                     Copies available: {{ $book->copies_available }}
                 </span>
